@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RadioGroup
+        android:gravity="center"
+        android:id="@+id/days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/sun"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:background="@drawable/rbtn_selector"
+            android:button="@null"
+            android:padding="4dp"
+            android:text="@string/san" />
+
+        <RadioButton
+            android:id="@+id/mon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:background="@drawable/rbtn_selector"
+            android:button="@null"
+            android:padding="4dp"
+            android:text="@string/mon"  />
+
+        <RadioButton
+            android:id="@+id/tue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:background="@drawable/rbtn_selector"
+            android:button="@null"
+            android:padding="4dp"
+            android:text="@string/tue"  />
+
+        <RadioButton
+            android:id="@+id/wed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:background="@drawable/rbtn_selector"
+            android:button="@null"
+            android:padding="4dp"
+            android:text="@string/wed"  />
+
+        <RadioButton
+            android:id="@+id/thur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:background="@drawable/rbtn_selector"
+            android:button="@null"
+            android:padding="4dp"
+            android:text="@string/thu"  />
+
+        <RadioButton
+            android:id="@+id/fri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:background="@drawable/rbtn_selector"
+            android:button="@null"
+            android:padding="4dp"
+            android:text="@string/fri"  />
+
+        <RadioButton
+            android:id="@+id/sat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:background="@drawable/rbtn_selector"
+            android:button="@null"
+            android:padding="4dp"
+            android:text="@string/sat"  />
+
+        <RadioButton
+            android:id="@+id/now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|top"
+            android:background="@drawable/rbtn_selector"
+            android:button="@null"
+            android:padding="4dp"
+            android:text="@string/now"  />
+    </RadioGroup>
+
+</LinearLayout>

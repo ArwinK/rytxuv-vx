@@ -48,5 +48,12 @@ public class UserFunctions {
         return rep;
     }
 
+    public ResponseModel getFiltered(String keyword) {
+        ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new NameValuePair("", usd.getToken(context)));
+        ResponseModel rep = jsonParser.requestGET(Constant.KEY_DOMAIN + "protected/appy-hour/" + keyword + "?token=" + usd.getToken(context), params);
 
+        return rep;
+
+    }
 }

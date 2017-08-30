@@ -24,12 +24,12 @@ import java.util.ArrayList;
  * Created by arwin on 7/3/17.
  */
 
-public class MapTask extends AsyncTask<String, String, ResponseModel> {
+public class MainTask extends AsyncTask<String, String, ResponseModel> {
     Context context;
     I_Response<Boolean, String> booleanI_response;
     Boolean can_connect = false;
 
-    public MapTask(Context context, I_Response<Boolean, String> booleanI_response) {
+    public MainTask(Context context, I_Response<Boolean, String> booleanI_response) {
         this.booleanI_response = booleanI_response;
         this.context = context;
     }
@@ -54,7 +54,7 @@ public class MapTask extends AsyncTask<String, String, ResponseModel> {
 
             if (rep.getJson() != null) {
                 try {
-
+                    // get stored json of all the active restaurants
                     String array = rep.getJson().getJSONArray("appy_hours").toString();
 
                     SharedPreferences resList = context.getSharedPreferences("res_list", Context.MODE_PRIVATE);
@@ -89,17 +89,6 @@ public class MapTask extends AsyncTask<String, String, ResponseModel> {
                 booleanI_response.onTaskCompletedMessage("A server error occurred.Please contact system administrator");
                 break;
             case 200:
-                JSONObject jobj = responseModel.getJson();
-
-                LoginDb ldb = LoginDb.getInstance(context);
-                ldb.getWritableDatabase();
-                ldb.resetTables();
-//                try {
-//                    jobj.getString(LoginModel.KEY_ACCESS_TOKEN);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-
                 booleanI_response.onTaskCompleted(true);
                 booleanI_response.onTaskCompletedMessage("You successfully logged in");
                 break;

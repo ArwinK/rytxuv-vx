@@ -25,10 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.struct.R;
-import app.struct.animation.ResizeAnimation;
+import app.struct.helpers.Callback;
 import app.struct.models.MarkerModel;
 import app.struct.network.I_Response;
-import app.struct.tasks.MapTask;
+import app.struct.tasks.MainTask;
+import app.struct.views.PDialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,6 +37,7 @@ import app.struct.tasks.MapTask;
 public class MapViewFragment extends Fragment implements OnMapReadyCallback {
 
     List<MarkerModel> companyList;
+    PDialog pDialog;
     private GoogleMap mMap;
     private double lng;
     private double lat;
@@ -50,7 +52,10 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_maps3, container, false);
 
-        new MapTask(getActivity(), new Callback()).execute();
+        pDialog = new PDialog(getActivity());
+
+        pDialog.start("Loading ...");
+        new MainTask(getActivity(), new Callback(pDialog)).execute();
 
         SharedPreferences resList = getActivity().getSharedPreferences("res_list", Context.MODE_PRIVATE);
         String jArray = resList.getString("resArray", null);
@@ -59,6 +64,7 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback {
 
         if (jArray != null) {
             try {
+
                 JSONArray nJArray = new JSONArray(jArray);
                 companyList = MarkerModel.makeArrayList(nJArray);
 
@@ -111,24 +117,5 @@ public class MapViewFragment extends Fragment implements OnMapReadyCallback {
                 .title("kenya")
                 .snippet(snippet));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-    }
-
-    private class Callback implements I_Response<Boolean, String> {
-
-        @Override
-        public void onTaskCompleted(Boolean i) {
-//            pdialog.end();
-//            txtWarningText.setVisibility(View.GONE);
-            if (i) {
-                //startActivity(new Intent(mContext, MainActivity.class));
-                //finish();
-            }
-
-        }
-
-        @Override
-        public void onTaskCompletedMessage(String s) {
-//            txtWarningText.setText(s);
-        }
     }
 }

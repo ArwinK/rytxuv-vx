@@ -2,6 +2,7 @@ package app.struct.fragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -11,10 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,10 +21,11 @@ import java.util.List;
 
 import app.struct.R;
 import app.struct.adapters.RestaurantAdapter;
-import app.struct.animation.ResizeAnimation;
+import app.struct.helpers.Callback;
 import app.struct.models.MarkerModel;
 import app.struct.network.I_Response;
-import app.struct.tasks.MapTask;
+import app.struct.tasks.MainTask;
+import app.struct.views.PDialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,6 +39,8 @@ public class ListViewFragment extends Fragment {
     private int targetHeight = 0;
     private int i = 0;
 
+    PDialog pDialog;
+
     public ListViewFragment() {
         // Required empty public constructor
     }
@@ -51,7 +51,10 @@ public class ListViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list_view, container, false);
 
-        new MapTask(getActivity(), new Callback()).execute();
+        pDialog = new PDialog(getActivity());
+
+        pDialog.start("Loading ...");
+        new MainTask(getActivity(), new Callback(pDialog)).execute();
 
         SharedPreferences resList = getActivity().getSharedPreferences("res_list", Context.MODE_PRIVATE);
         String jArray = resList.getString("resArray", null);
@@ -108,24 +111,4 @@ public class ListViewFragment extends Fragment {
         int size = orderList.size();
         orderList.clear();
     }
-
-    private class Callback implements I_Response<Boolean, String> {
-
-        @Override
-        public void onTaskCompleted(Boolean i) {
-//            pdialog.end();
-//            txtWarningText.setVisibility(View.GONE);
-            if (i) {
-                //startActivity(new Intent(mContext, MainActivity.class));
-                //finish();
-            }
-
-        }
-
-        @Override
-        public void onTaskCompletedMessage(String s) {
-//            txtWarningText.setText(s);
-        }
-    }
-
 }

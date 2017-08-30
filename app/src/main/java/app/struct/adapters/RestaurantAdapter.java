@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.struct.R;
+import app.struct.RestaurantDetails;
 import app.struct.models.MarkerModel;
 
 /**
@@ -69,10 +70,10 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.My
             @Override
             public void onClick(View v) {
 
-//                Intent intent = new Intent(mContext, Maps.class);
-//                intent.putExtra("long", longitude);
-//                intent.putExtra("lat", latitude);
-//                mContext.startActivity(intent);
+                Intent intent = new Intent(mContext, RestaurantDetails.class);
+                intent.putExtra("long", longitude);
+                intent.putExtra("lat", latitude);
+                mContext.startActivity(intent);
             }
         });
 

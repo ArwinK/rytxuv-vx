@@ -123,7 +123,6 @@ public class LoginModel {
 
     }
 
-
     private void login() {
 
         if (!gpsTracker.providersEnabled()) {

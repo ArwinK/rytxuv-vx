@@ -22,20 +22,16 @@ public class PDialog {
     }
 
     public void start(String text) {
-
         pdialog.show();
         pdialog.setMessage(text);
         pdialog.setTitle(text);
-
     }
 
     public void start(String text, Boolean cancelable) {
-
         pdialog.show();
         pdialog.setMessage(text);
         pdialog.setTitle(text);
         pdialog.setCancelable(cancelable);
-
     }
 
     public void update(String text) {
